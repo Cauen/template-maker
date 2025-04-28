@@ -1,36 +1,23 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Prompt:
 
-## Getting Started
+Quero que crie um software simples usando Shadcn ui para criar templates
 
-First, run the development server:
+O problema:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+De vez em quando preciso criar templates para prompts do Chat GPT
+Os prompts sempre tem uma parte variável e partes que são fixas:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Exemplo de template:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+ChatGTP, quero que você crie uma história em quadrinho da temática: {{tematica}}
+Ele deve se passar no ano de {{ano}}
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+Quero que a aplicação possa criar vários "Templates" do lado esquerdo.
+Quando um template é criado, é possível dar um nome para ele no topo do lado direito.
+Do lado direito devem ter duas abas "Builder" e "Preview".
+No builder, deve ser possível adicionar o template, que deve ser um texto com várias variáveis no formato de {{}}
+No "Preview" cada variável deve exibir um textarea... Na parte inferior todas as textareas deve mostrar o "Rendered text" com o texto gerado.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Use shadcnui
