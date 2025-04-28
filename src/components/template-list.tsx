@@ -10,6 +10,7 @@ import { useTemplateStore } from "@/store/template-store";
 export function TemplateList() {
   const [editingTemplate, setEditingTemplate] = useState<{ id: string; name: string } | null>(null);
   const [editName, setEditName] = useState("");
+  const [open, setOpen] = useState(false);
   
   const {
     templates,
@@ -60,6 +61,7 @@ export function TemplateList() {
           name: editName.trim()
         });
         setEditingTemplate(null);
+        setOpen(false);
         toast.success("Template renamed");
       }
     }
@@ -107,7 +109,7 @@ export function TemplateList() {
               {template.name}
             </button>
             <div className="flex gap-1">
-              <Dialog>
+              <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger asChild>
                   <Button
                     variant="ghost"
@@ -116,6 +118,7 @@ export function TemplateList() {
                     onClick={() => {
                       setEditingTemplate(template);
                       setEditName(template.name);
+                      setOpen(true);
                     }}
                   >
                     <Pencil className="h-4 w-4" />
@@ -135,6 +138,7 @@ export function TemplateList() {
                         }
                       }}
                       className="flex-1"
+                      autoFocus
                     />
                     <Button onClick={handleRename}>Save</Button>
                   </div>
