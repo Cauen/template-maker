@@ -70,19 +70,19 @@ export function TemplateList() {
   return (
     <div className="flex flex-col gap-4 h-full p-4">
       <div className="flex justify-between items-center">
-        <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100">Templates</h2>
-        <Button onClick={addTemplate} size="sm" variant="outline" className="bg-white dark:bg-slate-800">
+        <h2 className="text-xl font-semibold text-slate-900">Templates</h2>
+        <Button onClick={addTemplate} size="sm" variant="outline" className="bg-white">
           <Plus className="w-4 h-4 mr-2" />
           Add Template
         </Button>
       </div>
 
       <div className="flex gap-2">
-        <Button onClick={handleExport} size="sm" variant="outline" className="flex-1 bg-white dark:bg-slate-800">
+        <Button onClick={handleExport} size="sm" variant="outline" className="flex-1 bg-white">
           <Download className="w-4 h-4 mr-2" />
           Export
         </Button>
-        <Button asChild size="sm" variant="outline" className="flex-1 bg-white dark:bg-slate-800">
+        <Button asChild size="sm" variant="outline" className="flex-1 bg-white">
           <label>
             <Upload className="w-4 h-4 mr-2" />
             Import
@@ -103,7 +103,7 @@ export function TemplateList() {
             className={`template-item ${selectedTemplateId === template.id ? 'template-item-selected' : ''}`}
           >
             <button
-              className="flex-1 text-left text-slate-700 dark:text-slate-300"
+              className="flex-1 text-left text-slate-700"
               onClick={() => selectTemplate(template.id)}
             >
               {template.name}
@@ -114,7 +114,7 @@ export function TemplateList() {
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-8 w-8 hover:bg-slate-200 dark:hover:bg-slate-700"
+                    className="h-8 w-8 hover:bg-slate-200"
                     onClick={() => {
                       setEditingTemplate(template);
                       setEditName(template.name);
@@ -147,7 +147,7 @@ export function TemplateList() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-8 w-8 hover:bg-red-100 dark:hover:bg-red-900"
+                className="h-8 w-8 hover:bg-red-100"
                 onClick={() => deleteTemplate(template.id)}
               >
                 <Trash2 className="h-4 w-4 text-red-500" />

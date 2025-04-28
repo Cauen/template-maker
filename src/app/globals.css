@@ -15,12 +15,6 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
   background: var(--background);
@@ -60,36 +54,6 @@ body {
  
     --radius: 0.5rem;
   }
- 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
- 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
- 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
- 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
- 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
- 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
- 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
- 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
- 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-  }
 }
  
 @layer base {
@@ -103,11 +67,11 @@ body {
 
 @layer components {
   .template-item {
-    @apply flex items-center gap-2 p-3 rounded-md transition-colors cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800;
+    @apply flex items-center gap-2 p-3 rounded-md transition-colors cursor-pointer hover:bg-slate-100;
   }
 
   .template-item-selected {
-    @apply bg-slate-100 dark:bg-slate-800;
+    @apply bg-slate-100;
   }
 
   .template-editor {
@@ -115,7 +79,7 @@ body {
   }
 
   .template-preview {
-    @apply p-4 border rounded-md bg-slate-50 dark:bg-slate-900 font-mono whitespace-pre-wrap;
+    @apply p-4 border rounded-md bg-slate-50 font-mono whitespace-pre-wrap;
   }
 
   .template-variable {
@@ -123,10 +87,10 @@ body {
   }
 
   .template-variable-label {
-    @apply text-sm font-medium text-slate-700 dark:text-slate-300;
+    @apply text-sm font-medium text-slate-700;
   }
 
   .template-variable-input {
-    @apply w-full rounded-md border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-sm placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-500;
+    @apply w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400;
   }
 }
