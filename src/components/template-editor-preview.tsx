@@ -1,6 +1,9 @@
 import { useTemplateStore } from "@/store/template-store";
 import { stringToColor } from "@/utils/color-hash";
 import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import { Copy } from "lucide-react";
 
 function extractVariables(content: string, oldVars: { name: string; value: string }[] = []) {
   const regex = /{{([^}]+)}}/g;
@@ -10,6 +13,14 @@ function extractVariables(content: string, oldVars: { name: string; value: strin
     name,
     value: oldVars.find(v => v.name === name)?.value || ""
   }));
+}
+
+function renderTextWithVars(text: string, variables: { name: string; value: string }[]) {
+  if (!variables || variables.length === 0) return text;
+  return text.replace(/{{([^}]+)}}/g, (_, varName) => {
+    const variable = variables.find(v => v.name === varName);
+    return variable && variable.value ? variable.value : `{{${varName}}}`;
+  });
 }
 
 function highlightVariables(text: string, variables: { name: string; value: string }[]) {
@@ -63,9 +74,20 @@ export function TemplateEditorPreview() {
     updateTemplate({ ...selectedTemplate, content: value, variables: newVars });
   };
 
+  const handleCopy = async () => {
+    const rendered = renderTextWithVars(selectedTemplate.content, selectedTemplate.variables || []);
+    await navigator.clipboard.writeText(rendered);
+    toast.success("Texto copiado para a área de transferência!");
+  };
+
   return (
     <div className="p-6 h-full flex flex-col gap-4">
-      <h2 className="text-xl font-bold mb-2">{selectedTemplate.name}</h2>
+      <div className="flex items-center justify-between mb-2">
+        <h2 className="text-xl font-bold ">{selectedTemplate.name}</h2>
+        <Button size="icon" variant="outline" onClick={handleCopy} title="Copiar texto renderizado">
+          <Copy className="w-4 h-4" />
+        </Button>
+      </div>
       <Textarea
         className="font-mono min-h-[180px] resize-vertical"
         value={selectedTemplate.content}

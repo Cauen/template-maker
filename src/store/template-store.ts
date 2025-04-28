@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { faker } from '@faker-js/faker';
 
 interface Variable {
   name: string;
@@ -28,9 +29,10 @@ export const useTemplateStore = create<TemplateStore>()(
       templates: [],
       selectedTemplateId: null,
       addTemplate: () => {
+        const word = faker.animal.type() || faker.word.noun();
         const newTemplate: Template = {
           id: Date.now().toString(),
-          name: "New Template",
+          name: `Template ${word.charAt(0).toUpperCase() + word.slice(1)}`,
           content: "",
           variables: []
         };
