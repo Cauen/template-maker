@@ -5,8 +5,8 @@ import { TemplateEditorPreview } from "@/components/template-editor-preview";
 import { TemplateVariablePanel } from "@/components/template-variable-panel";
 
 export default function Home() {
-  // Larguras iniciais das colunas
-  const [widths, setWidths] = useState([320, 600, 400]);
+  // Larguras iniciais das colunas esquerda e direita
+  const [widths, setWidths] = useState([320, 400]);
   const dragging = useRef<number | null>(null);
 
   const handleMouseDown = (idx: number) => {
@@ -19,18 +19,16 @@ export default function Home() {
   };
   const handleMouseMove = (e: MouseEvent) => {
     if (dragging.current !== null) {
-      const newWidths = [...widths];
       const min = 200;
+      const newWidths = [...widths];
       if (dragging.current === 0) {
         // entre coluna 0 e 1
         const newW = Math.max(min, e.clientX);
         newWidths[0] = newW;
-        newWidths[1] = Math.max(min, widths[1] + (widths[0] - newW));
       } else if (dragging.current === 1) {
         // entre coluna 1 e 2
-        const newW = Math.max(min, e.clientX - widths[0]);
+        const newW = Math.max(min, window.innerWidth - e.clientX);
         newWidths[1] = newW;
-        newWidths[2] = Math.max(min, widths[2] + (widths[1] - newW));
       }
       setWidths(newWidths);
     }
@@ -52,7 +50,7 @@ export default function Home() {
         onMouseDown={() => handleMouseDown(0)}
         style={{ zIndex: 10 }}
       />
-      <div style={{ width: widths[1] }} className="border-r h-full overflow-auto">
+      <div className="h-full overflow-auto flex-1 min-w-[200px]">
         <TemplateEditorPreview />
       </div>
       {/* Drag handle 2 */}
@@ -61,7 +59,7 @@ export default function Home() {
         onMouseDown={() => handleMouseDown(1)}
         style={{ zIndex: 10 }}
       />
-      <div style={{ width: widths[2] }} className="h-full overflow-auto">
+      <div style={{ width: widths[1] }} className="h-full overflow-auto">
         <TemplateVariablePanel />
       </div>
     </main>
