@@ -11,7 +11,7 @@ export function TemplateList() {
   const [editingTemplate, setEditingTemplate] = useState<{ id: string; name: string } | null>(null);
   const [editName, setEditName] = useState("");
   const [open, setOpen] = useState(false);
-  
+
   const {
     templates,
     selectedTemplateId,
@@ -71,18 +71,18 @@ export function TemplateList() {
     <div className="flex flex-col gap-4 h-full p-4">
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-semibold text-slate-900">Templates</h2>
-        <Button onClick={addTemplate} size="sm" variant="outline" className="bg-white">
+        <Button onClick={addTemplate} size="sm" variant="outline" className="bg-white hover:bg-slate-100 transition">
           <Plus className="w-4 h-4 mr-2" />
           Add Template
         </Button>
       </div>
 
       <div className="flex gap-2">
-        <Button onClick={handleExport} size="sm" variant="outline" className="flex-1 bg-white">
+        <Button onClick={handleExport} size="sm" variant="outline" className="flex-1 bg-white hover:bg-slate-100 transition">
           <Download className="w-4 h-4 mr-2" />
           Export
         </Button>
-        <Button asChild size="sm" variant="outline" className="flex-1 bg-white">
+        <Button asChild size="sm" variant="outline" className="flex-1 bg-white hover:bg-slate-100 transition">
           <label>
             <Upload className="w-4 h-4 mr-2" />
             Import
@@ -100,11 +100,11 @@ export function TemplateList() {
         {templates.map((template) => (
           <div
             key={template.id}
+            onClick={() => selectTemplate(template.id)}
             className={`template-item ${selectedTemplateId === template.id ? 'template-item-selected' : ''}`}
           >
             <button
               className="flex-1 text-left text-slate-700"
-              onClick={() => selectTemplate(template.id)}
             >
               {template.name}
             </button>
@@ -114,7 +114,7 @@ export function TemplateList() {
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-8 w-8 hover:bg-slate-200"
+                    className="h-8 w-8 hover:bg-slate-200 transition"
                     onClick={() => {
                       setEditingTemplate(template);
                       setEditName(template.name);
@@ -140,14 +140,14 @@ export function TemplateList() {
                       className="flex-1"
                       autoFocus
                     />
-                    <Button onClick={handleRename}>Save</Button>
+                    <Button onClick={handleRename} className="hover:bg-slate-100 transition">Save</Button>
                   </div>
                 </DialogContent>
               </Dialog>
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-8 w-8 hover:bg-red-100"
+                className="h-8 w-8 hover:bg-red-100 transition"
                 onClick={() => deleteTemplate(template.id)}
               >
                 <Trash2 className="h-4 w-4 text-red-500" />
