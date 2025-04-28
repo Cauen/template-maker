@@ -73,19 +73,19 @@ export function TemplateList() {
         <h2 className="text-xl font-semibold text-slate-900">Templates</h2>
         <Button onClick={addTemplate} size="sm" variant="outline" className="bg-white hover:bg-slate-100 transition">
           <Plus className="w-4 h-4 mr-2" />
-          Add Template
+          Adicionar Template
         </Button>
       </div>
 
       <div className="flex gap-2">
         <Button onClick={handleExport} size="sm" variant="outline" className="flex-1 bg-white hover:bg-slate-100 transition">
           <Download className="w-4 h-4 mr-2" />
-          Export
+          Exportar
         </Button>
         <Button asChild size="sm" variant="outline" className="flex-1 bg-white hover:bg-slate-100 transition">
           <label>
             <Upload className="w-4 h-4 mr-2" />
-            Import
+            Importar
             <input
               type="file"
               accept=".json"
